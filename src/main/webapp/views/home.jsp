@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-      Trang chủ admin
+      Trang chủ user
 </body>
 </html>

@@ -30,7 +30,7 @@ public class RegisterController extends HttpServlet {
 		String username = req.getParameter("username");
 		String password = req.getParameter("password");
 		String email = req.getParameter("email");
-		String fullname = req.getParameter("fullname");
+		String fullname = req.getParameter("fullname"  );
 		String phone = req.getParameter("phone");
 		IUserService service = new UserServiceImpl();
 		String alertMsg = "";

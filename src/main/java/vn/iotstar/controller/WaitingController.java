@@ -17,6 +17,7 @@ public class WaitingController extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		// kiem tra session
 		HttpSession session = req.getSession();
 		if (session != null && session.getAttribute("account") != null) {
 			UserModel u = (UserModel) session.getAttribute("account");
@@ -25,6 +26,7 @@ public class WaitingController extends HttpServlet {
 				resp.sendRedirect(req.getContextPath() + "/admin/home");
 			} else if (u.getRoleid() == 3) {
 				resp.sendRedirect(req.getContextPath() + "/manager/home");
+				// bo sung 4,5 sau do chua viêt jsp
 			} else {
 				resp.sendRedirect(req.getContextPath() + "/home");
 			}
