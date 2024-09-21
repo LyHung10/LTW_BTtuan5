@@ -14,6 +14,14 @@ public class UserModel implements Serializable{
 		return id;
 	}
 
+	public String getCode() {
+		return code;
+	}
+
+	public void setCode(String code) {
+		this.code = code;
+	}
+
 	public void setId(int id) {
 		this.id = id;
 	}
@@ -26,6 +34,8 @@ public class UserModel implements Serializable{
 	private int roleid;
 	private String phone;
 	private Date createdate;
+	private String code;
+
 	
 	
 
