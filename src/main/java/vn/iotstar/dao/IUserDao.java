@@ -11,6 +11,8 @@ public interface IUserDao {
 	UserModel findById(int id);
 
 	void insert(UserModel user);
+	//void insertregister(UserModel user);
+
 
 	// khai bao ham va thu tuc
 	UserModel findByUserName(String username);

@@ -28,7 +28,7 @@ public class Email {
 
 	    String toEmail = user.getEmail();
 	    String fromEmail = "phuongtrinhdangthuc@gmail.com";
-	    String password = "123";
+	    String password = "kfbq ycvg qpga ydob";
 
 	    try {
 	        // Your host email SMTP server details

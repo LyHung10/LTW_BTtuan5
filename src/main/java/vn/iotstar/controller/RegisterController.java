@@ -41,7 +41,7 @@ public class RegisterController extends HttpServlet {
 			req.getRequestDispatcher("/views/register.jsp").forward(req, resp);
 			return;
 		}else {
-			if (service.checkExistEmail(email)) {
+			if (service.checkExistEmail(email)) {  
 				alertMsg = "Email đã tồn tại!";
 				req.setAttribute("alert", alertMsg);
 				req.getRequestDispatcher("/views/register.jsp").forward(req, resp);

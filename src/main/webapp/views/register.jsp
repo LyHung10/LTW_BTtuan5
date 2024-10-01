@@ -4,93 +4,108 @@
 <%@taglib prefix="fmt" uri="jakarta.tags.fmt"%>
 <%@taglib prefix="fun" uri="jakarta.tags.functions"%>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Form with Date Picker</title>
-<style>
-body {
-	font-family: Arial, sans-serif;
-	background-color: #f3f3f3;
-	margin: 0;
-	padding: 0;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	height: 100vh;
-}
-
-.main {
-	background-color: #fff;
-	border-radius: 15px;
-	box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-	padding: 20px;
-	width: 300px;
-}
-
-.main h2 {
-	color: #4caf50;
-	margin-bottom: 20px;
-}
-
-label {
-	display: block;
-	margin-bottom: 5px;
-	color: #555;
-	font-weight: bold;
-}
-
-input[type="text"], input[type="email"], input[type="password"], input[type="date"],
-	/* Thêm loại cho trường ngày */ select {
-	width: 100%;
-	margin-bottom: 15px;
-	padding: 10px;
-	box-sizing: border-box;
-	border: 1px solid #ddd;
-	border-radius: 5px;
-}
-
-button[type="submit"] {
-	padding: 15px;
-	border-radius: 10px;
-	border: none;
-	background-color: #4caf50;
-	color: white;
-	cursor: pointer;
-	width: 100%;
-	font-size: 16px;
-}
-
-button[type="submit"]:hover {
-	background-color: #45a049; /* Màu thay đổi khi hover */
-}
-</style>
-</head>
-<body>
-	<c:if test="${alert !=null}">
-		<h3 class="alert alertdanger">${alert}</h3>
-	</c:if>
-
-	<div class="main">
-		<h2>Registration Form</h2>
-		<form action="register" method="post">
-			<label for="username">User name:</label> <input type="text"
-				id="username" name="username" required /> <label for="fullname">Full
-				name:</label> <input type="text" id="fullname" name="fullname" required />
-
-			<label for="email">Email:</label> <input type="email" id="email"
-				name="email" required /> <label for="password">Password:</label> <input
-				type="password" id="password" name="password" required /> <label
-				for="repassword">Re-type Password:</label> <input type="password"
-				id="repassword" name="repassword" required /> 
-			<label for="phone">Phone:</label>
-			<input type="text" id="phone" name="phone" maxlength="10" required />
-
-			<button type="submit">Submit</button>
-		</form>
+<!-- BEGIN CONTENT -->
+<div class="col-md-12 col-sm-12">
+	<h1>Create an account</h1>
+	<div class="content-form-page">
+		<div class="row">
+			<div class="col-md-10 col-sm-10">
+				<c:if test="${alert != null}">
+					<h3 class="alert alert-danger">${alert}</h3>
+				</c:if>
+				<form action="${pageContext.request.contextPath}/register"
+					method="post" class="form-horizontal form-without-legend"
+					role="form">
+					<fieldset>
+						<legend>Your personal details</legend>
+						<div class="form-group">
+							<label for="username" class="col-lg-4 control-label">Username
+								<span class="require">*</span>
+							</label>
+							<div class="col-lg-8">
+								<input type="text" class="form-control" id="username"
+									name="username">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="fullname" class="col-lg-4 control-label">Fullname
+								<span class="require">*</span>
+							</label>
+							<div class="col-lg-8">
+								<input type="text" class="form-control" id="fullname"
+									name="fullname">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="email" class="col-lg-4 control-label">Email <span
+								class="require">*</span></label>
+							<div class="col-lg-8">
+								<input type="email" class="form-control" id="email" name="email">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="phone" class="col-lg-4 control-label">Phone <span
+								class="require">*</span></label>
+							<div class="col-lg-8">
+								<input type="text" class="form-control" id="phone" name="phone">
+							</div>
+						</div>
+					</fieldset>
+					<fieldset>
+						<legend>Your password</legend>
+						<div class="form-group">
+							<label for="password" class="col-lg-4 control-label">Password
+								<span class="require">*</span>
+							</label>
+							<div class="col-lg-8">
+								<input type="password" class="form-control" id="password"
+									name="password">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="repassword" class="col-lg-4 control-label">Confirm
+								password <span class="require">*</span>
+							</label>
+							<div class="col-lg-8">
+								<input type="password" class="form-control" id="repassword"
+									name="repassword">
+							</div>
+						</div>
+					</fieldset>
+					<fieldset>
+						<legend>Newsletter</legend>
+						<div class="checkbox form-group">
+							<label>
+								<div class="col-lg-4 col-sm-4">Sign up for Newsletter</div>
+								<div class="col-lg-8 col-sm-8">
+									<input type="checkbox" name="newsletter">
+								</div>
+							</label>
+						</div>
+					</fieldset>
+					<div class="row">
+						<div
+							class="col-lg-8 col-md-offset-4 padding-left-0 padding-top-20">
+							<button type="submit" class="btn btn-primary">Create an
+								account</button>
+							<button type="button" class="btn btn-default">Cancel</button>
+						</div>
+					</div>
+				</form>
+			</div>
+			<div class="col-md-4 col-sm-4 pull-right">
+				<div class="form-info">
+					<h2>
+						<em>Important</em> Information
+					</h2>
+					<p>Lorem ipsum dolor ut sit ame dolore adipiscing elit...</p>
+					<p>Duis autem vel eum iriure at dolor vulputate velit esse vel
+						molestie at dolore.</p>
+					<button type="button" class="btn btn-default">More details</button>
+				</div>
+			</div>
+		</div>
 	</div>
+</div>
+<!-- END CONTENT -->
 
-</body>
-</html>

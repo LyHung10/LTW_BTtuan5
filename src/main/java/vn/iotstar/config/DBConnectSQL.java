@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DBConnectSQL {
-	private final String serverName = "LAPTOP-KN9ENH3A\\SQLEXPRESS";
+	private final String serverName = "LAPTOP-KN9ENH3A\\SQLEXPRESS01";
 
 	private final String dbName = "LTWtuan2";
 

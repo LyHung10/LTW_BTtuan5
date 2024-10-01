@@ -83,7 +83,6 @@ public class UserDaoImpl implements IUserDao {
 				user.setPassword(rs.getString("password"));
 				user.setFullname(rs.getString("fullname"));
 				user.setImage(rs.getString("image"));
-
 				user.setPhone(rs.getString("phone"));
 				user.setRoleid(rs.getInt("roleid"));
 				user.setCreatedate(rs.getDate("createdate"));
@@ -98,33 +97,40 @@ public class UserDaoImpl implements IUserDao {
 
 	@Override
 	public void insert(UserModel user) {
-		String sql = "INSERT INTO users(id, username, password, image, fullname, email, phone ,roleid,createdate) VALUES (?, ?,?,?,?,?, ?,?,?)";
+	    String sql = "INSERT INTO users( username, password, fullname, email, phone) VALUES ( ?, ?, ?, ?, ?)";
 
-		try {
-			// conn = new DBConnectSQL().getConnection(); //kết női database
-			ps = conn.prepareStatement(sql);// ném câu sq1 vào cho thực thi
+	    try {
+	        conn = new DBConnectSQL().getConnection(); // Kết nối đến cơ sở dữ liệu
+	        ps = conn.prepareStatement(sql); // Ném câu SQL vào cho thực thi
+	        System.out.println(user.toString()); // Thêm dòng này
+	        
+	        ps.setString(1, user.getUsername());
+	        ps.setString(2, user.getPassword());
+	        ps.setString(3, user.getFullname());
+	        ps.setString(4, user.getEmail());
+	        ps.setString(5, user.getPhone());
 
-			ps.setInt(1, user.getId());
-			ps.setString(2, user.getUsername());
-			ps.setString(3, user.getPassword());
-			ps.setString(4, user.getImage());
-			ps.setString(5, user.getFullname());
-			// tis tt
-			ps.executeUpdate();
-
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
+	        ps.executeUpdate(); // Thực thi câu lệnh
+	    } catch (SQLException e) {
+	        e.printStackTrace(); // Xử lý lỗi SQL
+	    } catch (Exception e) { // Bắt mọi loại ngoại lệ khác
+	        e.printStackTrace();
+	    } finally {
+	        // Đóng tài nguyên trong khối finally
+	        try {
+	            if (ps != null) ps.close();
+	            if (conn != null) conn.close();
+	        } catch (SQLException ex) {
+	            ex.printStackTrace();
+	        }
+	    }
 	}
 
 	
-
 	@Override
 	public boolean checkExistEmail(String email) {
 		boolean duplicate = false;
-		String query = "select * from [users] where email = ?";
+		String query = "select * from users where email = ?";
 		try {
 			conn = new DBConnectSQL().getConnection();
 			ps = conn.prepareStatement(query);
@@ -182,7 +188,7 @@ public class UserDaoImpl implements IUserDao {
 	public static void main(String[] args) {
 		try {
 			IUserDao userDao = new UserDaoImpl();
-			System.out.print(userDao.checkExistPhone("0165"));
+			System.out.print(userDao.checkExistUsername("hung"));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
